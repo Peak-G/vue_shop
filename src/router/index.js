@@ -1,9 +1,11 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-
+import store from '@/store'
 Vue.use(VueRouter)
-const Login = () => import('../components/Login')
-const Home = () => import('../components/Home')
+const Login = () => import('../views/Login')
+const Home = () => import('../views/Home')
+const Welcome = () => import('../views/Welcome')
+const Users = () => import('../views/user/Users')
 const routes = [
   {
     path: '',
@@ -15,10 +17,20 @@ const routes = [
   },
   {
     path: '/home',
-    component: Home
+    component: Home,
+    redirect: '/welcome',
+    children: [
+      {
+        path: '/welcome',
+        component: Welcome
+      },
+      {
+        path: '/users',
+        component: Users
+      },
+    ]
   }
 ]
-
 const router = new VueRouter({
   routes,
   mode: 'history'
@@ -26,9 +38,13 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
   if (to.path === '/login') return next()
-  const tokenStr = window.sessionStorage.getItem('token')
-  if (!tokenStr) return next('/login')
-  next()
+  // const tokenStr = store.state.token
+  // if (!tokenStr) return next('/login')
+  // next()
+  // 方式二
+  next(vm => {
+    const tokenStr = this.$store.state.token
+    if (!tokenStr) return next('/login')
+  })
 })
-
 export default router

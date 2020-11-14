@@ -56,7 +56,7 @@ export default {
           {
             min: 5,
             max: 10,
-            message: "长度在 5 到 10 个字符",
+            message: "用户名长度在 5 到 10 个字符之间",
             trigger: "blur",
           },
         ],
@@ -65,7 +65,7 @@ export default {
           {
             min: 6,
             max: 15,
-            message: "长度在 6 到 15 个字符",
+            message: "密码长度在 6 到 15 个字符之间",
             trigger: "blur",
           },
         ],
@@ -85,7 +85,7 @@ export default {
           return this.$message.error(res.meta.msg);
         }
         this.$message.success("登录成功！");
-        window.sessionStorage.setItem("token", res.data.token);
+        this.$store.commit("saveToken", res.data.token);
         this.$router.push("/home");
       });
     },
