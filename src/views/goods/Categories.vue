@@ -358,10 +358,4 @@ export default {
 .el-cascader {
   width: 100%;
 }
-.el-cascader-panel {
-  height: 200px;
-}
-.el-scrollbar__wrap {
-  overflow-x: hidden;
-}
 </style>

@@ -24,3 +24,12 @@ body,
 .el-pagination {
   margin-top: 15px;
 }
+
+/* 级联选择框下拉菜单的高度和底部滚动条的隐藏 */
+.el-cascader-panel {
+  height: 200px;
+}
+
+.el-scrollbar__wrap {
+  overflow-x: hidden;
+}
