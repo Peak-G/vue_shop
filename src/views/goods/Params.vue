@@ -308,6 +308,7 @@ export default {
           params: { sel: this.activeName },
         }
       );
+      console.log(res.data);
       res.data.forEach((item) => {
         item.attr_vals = item.attr_vals ? item.attr_vals.split(" ") : [];
         // 控制文本框的显示与隐藏
@@ -315,6 +316,7 @@ export default {
         // 文本框的输入值
         item.inputValue = "";
       });
+      console.log(res.data);
       if (res.meta.status !== 200) {
         return this.$message.error(res.meta.msg);
       }
@@ -442,7 +444,7 @@ export default {
         {
           attr_name: scope.attr_name,
           attr_sel: scope.attr_sel,
-          attr_vals: scope.attr_vals.join(""),
+          attr_vals: scope.attr_vals.join(" "),
         }
       );
       if (res.meta.status !== 200) {
